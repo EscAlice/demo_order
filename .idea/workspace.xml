@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="445664d7-a263-4764-99f7-5a1acaeee0b4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handler/order_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/order_handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/order_service_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/order_service_test.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,7 +47,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Build.go build demo_order">
+  <component name="RunManager" selected="Go Test.TestOrderService_ExportOrder in demo_order/service">
     <configuration name="go build demo_order" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="demo_order" />
       <working_directory value="$PROJECT_DIR$" />
@@ -58,7 +57,29 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
-    <configuration name="TestOrderService_GetOrder in demo_order/service" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestOrderService_DownloadFile in demo_order/service" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="demo_order" />
+      <working_directory value="$PROJECT_DIR$/service" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="demo_order/service" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestOrderService_DownloadFile$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestOrderService_ExportOrder in demo_order/service" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="demo_order" />
+      <working_directory value="$PROJECT_DIR$/service" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="demo_order/service" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestOrderService_ExportOrder$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestOrderService_GetOrder in demo_order/service (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="demo_order" />
       <working_directory value="$PROJECT_DIR$/service" />
       <framework value="gotest" />
@@ -69,7 +90,7 @@
       <pattern value="^TestOrderService_GetOrder$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestOrderService_GetOrders in demo_order/service" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestOrderService_GetOrders in demo_order/service (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="demo_order" />
       <working_directory value="$PROJECT_DIR$/service" />
       <framework value="gotest" />
@@ -80,35 +101,13 @@
       <pattern value="^TestOrderService_GetOrders$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestOrderService_UpdateFileUrl in demo_order/service" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="demo_order" />
-      <working_directory value="$PROJECT_DIR$/service" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="demo_order/service" />
-      <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestOrderService_UpdateFileUrl$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestOrderService_UpdateOne in demo_order/service" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="demo_order" />
-      <working_directory value="$PROJECT_DIR$/service" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="demo_order/service" />
-      <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestOrderService_UpdateOne$" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestOrderService_ExportOrder in demo_order/service" />
+        <item itemvalue="Go Test.TestOrderService_DownloadFile in demo_order/service" />
+        <item itemvalue="Go Test.TestOrderService_GetOrder in demo_order/service (1)" />
+        <item itemvalue="Go Test.TestOrderService_GetOrders in demo_order/service (1)" />
         <item itemvalue="Go Build.go build demo_order" />
-        <item itemvalue="Go Test.TestOrderService_GetOrder in demo_order/service" />
-        <item itemvalue="Go Test.TestOrderService_UpdateFileUrl in demo_order/service" />
-        <item itemvalue="Go Test.TestOrderService_UpdateOne in demo_order/service" />
-        <item itemvalue="Go Test.TestOrderService_GetOrders in demo_order/service" />
       </list>
     </recent_temporary>
   </component>

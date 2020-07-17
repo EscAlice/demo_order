@@ -7,12 +7,19 @@ import (
 	"testing"
 )
 
-// 新增
-func TestOrderService_AddOrder(t *testing.T) {
+// 初始化数据库连接
+func InitService() *OrderService {
 
 	dbLink, _ := db.Init()
 	Dao := &dao.OrderMysqlDao{Db: dbLink}
 	orderService := &OrderService{dao: Dao}
+	return orderService
+}
+
+// 新增
+func TestOrderService_AddOrder(t *testing.T) {
+
+	orderService := InitService()
 
 	req := ReqAddParam{
 		OrderId:  "",
@@ -29,9 +36,7 @@ func TestOrderService_AddOrder(t *testing.T) {
 // 数据
 func TestOrderService_GetOrder(t *testing.T) {
 
-	dbLink, _ := db.Init()
-	Dao := &dao.OrderMysqlDao{Db: dbLink}
-	orderService := &OrderService{dao: Dao}
+	orderService := InitService()
 
 	id := 10
 	res, err := orderService.GetOrder(int64(id))
@@ -42,9 +47,7 @@ func TestOrderService_GetOrder(t *testing.T) {
 // 列表
 func TestOrderService_GetOrders(t *testing.T) {
 
-	dbLink, _ := db.Init()
-	Dao := &dao.OrderMysqlDao{Db: dbLink}
-	orderService := &OrderService{dao: Dao}
+	orderService := InitService()
 
 	username := "xiaoming"
 	page := 0
@@ -59,9 +62,7 @@ func TestOrderService_GetOrders(t *testing.T) {
 // 更新
 func TestOrderService_UpdateOne(t *testing.T) {
 
-	dbLink, _ := db.Init()
-	Dao := &dao.OrderMysqlDao{Db: dbLink}
-	orderService := &OrderService{dao: Dao}
+	orderService := InitService()
 
 	resp := RespGetParam{
 		ID:       11,
@@ -80,13 +81,31 @@ func TestOrderService_UpdateOne(t *testing.T) {
 // 更新url
 func TestOrderService_UpdateFileUrl(t *testing.T) {
 
-	dbLink, _ := db.Init()
-	Dao := &dao.OrderMysqlDao{Db: dbLink}
-	orderService := &OrderService{dao: Dao}
+	orderService := InitService()
 
 	id := 10
 	url := "upload/2020/7/14/1594720514-用户类图.jpg"
 
 	err := orderService.UpdateFileUrl(int64(id), url)
+	assert.NoError(t, err)
+}
+
+// 下载文件
+func TestOrderService_DownloadFile(t *testing.T) {
+
+	orderService := InitService()
+
+	id := 9
+
+	_, err := orderService.DownloadFile(int64(id))
+	assert.NoError(t, err)
+}
+
+// 文件导出
+func TestOrderService_ExportOrder(t *testing.T) {
+
+	orderService := InitService()
+
+	err := orderService.ExportOrder()
 	assert.NoError(t, err)
 }
