@@ -10,16 +10,16 @@ func InitRouter() *gin.Engine {
 	router := gin.Default()
 
 	// 获取数据列表
-	router.GET("/order/list", handler.GetList)
+	router.POST("/order/list", handler.OrderList)
 
 	// 获取数据
-	router.GET("/order/one", handler.GetOne)
+	router.POST("/order/detail", handler.OrderDetail)
 
 	// 新增数据
-	router.POST("/order/add", handler.NewOne)
+	router.POST("/order/add", handler.AddOrder)
 
 	// 更新数据
-	router.POST("/order/update", handler.UpdateOne)
+	router.POST("/order/update", handler.UpdateOrder)
 
 	// 文件上传
 	router.POST("/order/upload", handler.Upload)

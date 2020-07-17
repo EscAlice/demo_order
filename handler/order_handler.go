@@ -12,7 +12,7 @@ import (
 
 var OService *service.OrderService
 
-type NewReq struct {
+type AddOrderReq struct {
 	OrderId  string `form:"order_id"`
 	UserName string `form:"user_name"`
 	Amount   string `form:"amount"`
@@ -20,27 +20,27 @@ type NewReq struct {
 	FileUrl  string `form:"file_url"`
 }
 
-type GetReq struct {
+type GetOrderReq struct {
 	ID int64 `form:"id"`
 }
 
-type UpdateReq struct {
+type UpdateOrderReq struct {
 	ID      int64   `form:"id"`
 	Amount  float64 `form:"amount"`
 	Status  string  `form:"status"`
 	FileUrl string  `form:"file_url"`
 }
 
-type ListReq struct {
+type OrderListReq struct {
 	UserName string `form:"user_name"`
 	Page     int    `form:"page"`
 	Limit    int    `form:"limit"`
 }
 
 // 添加数据
-func NewOne(c *gin.Context) {
+func AddOrder(c *gin.Context) {
 
-	newReq := NewReq{}
+	newReq := AddOrderReq{}
 	if err := c.ShouldBind(&newReq); err != nil {
 		c.JSON(http.StatusOK, gin.H{
 			"code":    -1,
@@ -49,7 +49,7 @@ func NewOne(c *gin.Context) {
 		return
 	}
 
-	param := service.ReqAddParam{
+	req := service.OrderDetailReq{
 		OrderId:  newReq.OrderId,
 		UserName: newReq.UserName,
 		Amount:   newReq.Amount,
@@ -57,7 +57,7 @@ func NewOne(c *gin.Context) {
 		FileUrl:  newReq.FileUrl,
 	}
 
-	err := OService.AddOrder(param)
+	err := OService.AddOrder(req)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
 			"code":    -1,
@@ -73,9 +73,9 @@ func NewOne(c *gin.Context) {
 }
 
 // 查询单条数据
-func GetOne(c *gin.Context) {
+func OrderDetail(c *gin.Context) {
 
-	getReq := GetReq{}
+	getReq := GetOrderReq{}
 	if err := c.ShouldBind(&getReq); err != nil {
 		c.JSON(http.StatusOK, gin.H{
 			"code":    -1,
@@ -84,7 +84,7 @@ func GetOne(c *gin.Context) {
 		return
 	}
 
-	result, err := OService.GetOrder(getReq.ID)
+	result, err := OService.OrderDetail(getReq.ID)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
 			"code":    -1,
@@ -100,9 +100,9 @@ func GetOne(c *gin.Context) {
 }
 
 // 更新数据
-func UpdateOne(c *gin.Context) {
+func UpdateOrder(c *gin.Context) {
 
-	updateReq := UpdateReq{}
+	updateReq := UpdateOrderReq{}
 	if err := c.ShouldBind(&updateReq); err != nil {
 		c.JSON(http.StatusOK, gin.H{
 			"code":    -1,
@@ -111,14 +111,14 @@ func UpdateOne(c *gin.Context) {
 		return
 	}
 
-	param := service.RespGetParam{
+	param := service.OrderReq{
 		ID:      updateReq.ID,
 		Amount:  updateReq.Amount,
 		Status:  updateReq.Status,
 		FileUrl: updateReq.FileUrl,
 	}
 
-	err := OService.UpdateOne(param)
+	err := OService.UpdateOrder(param)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
 			"code":    -1,
@@ -134,9 +134,9 @@ func UpdateOne(c *gin.Context) {
 }
 
 // 查询列表数据
-func GetList(c *gin.Context) {
+func OrderList(c *gin.Context) {
 
-	listReq := ListReq{}
+	listReq := OrderListReq{}
 	if err := c.ShouldBind(&listReq); err != nil {
 		c.JSON(http.StatusOK, gin.H{
 			"code":    -1,
@@ -145,7 +145,7 @@ func GetList(c *gin.Context) {
 		return
 	}
 
-	result, err := OService.GetOrders(listReq.UserName, listReq.Page, listReq.Limit)
+	result, err := OService.OrderList(listReq.UserName, listReq.Page, listReq.Limit)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
 			"code":    -1,
@@ -163,7 +163,7 @@ func GetList(c *gin.Context) {
 // 文件上传
 func Upload(c *gin.Context) {
 
-	getReq := GetReq{}
+	getReq := GetOrderReq{}
 	if err := c.ShouldBind(&getReq); err != nil {
 		c.JSON(http.StatusOK, gin.H{
 			"code":    -1,
@@ -207,7 +207,7 @@ func Upload(c *gin.Context) {
 // 通过传入id下载fileurl的文件
 func Download(c *gin.Context) {
 
-	getReq := GetReq{}
+	getReq := GetOrderReq{}
 	if err := c.ShouldBind(&getReq); err != nil {
 		c.JSON(http.StatusOK, gin.H{
 			"code":    -1,

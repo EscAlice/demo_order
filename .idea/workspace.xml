@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="445664d7-a263-4764-99f7-5a1acaeee0b4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handler/order_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/order_handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/order_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/order_service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/order_service_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/order_service_test.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,6 +37,11 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../TexasPoker/TexasHoldemAI" />
     <property name="settings.editor.selected.configurable" value="fileTemplates" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\EscAlice\go\src\demo_order\utils" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">

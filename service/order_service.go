@@ -12,7 +12,7 @@ import (
 	"time"
 )
 
-type ReqAddParam struct {
+type OrderDetailReq struct {
 	OrderId  string `json:"order_id"`
 	UserName string `json:"user_name"`
 	Amount   string `json:"amount"`
@@ -20,7 +20,7 @@ type ReqAddParam struct {
 	FileUrl  string `json:"file_url"`
 }
 
-type RespGetParam struct {
+type OrderReq struct {
 	ID       int64   `json:"id"`
 	OrderId  string  `json:"order_id"`
 	UserName string  `json:"user_name"`
@@ -39,7 +39,7 @@ func NewOrderService(dao dao.OrderDao) *OrderService {
 }
 
 // 新增数据
-func (s *OrderService) AddOrder(req ReqAddParam) error {
+func (s *OrderService) AddOrder(req OrderDetailReq) error {
 
 	amount, _ := strconv.ParseFloat(req.Amount, 64)
 	order := &model.Order{
@@ -59,13 +59,13 @@ func (s *OrderService) AddOrder(req ReqAddParam) error {
 }
 
 // 查询数据
-func (s *OrderService) GetOrder(id int64) (*RespGetParam, error) {
+func (s *OrderService) OrderDetail(id int64) (*OrderReq, error) {
 
 	order, err := s.dao.QueryOrder(id)
 	if err != nil {
 		return nil, err
 	}
-	res := &RespGetParam{
+	res := &OrderReq{
 		ID:       order.ID,
 		OrderId:  order.OrderId,
 		UserName: order.UserName,
@@ -77,7 +77,7 @@ func (s *OrderService) GetOrder(id int64) (*RespGetParam, error) {
 }
 
 // 查询数据列表
-func (s *OrderService) GetOrders(username string, page, limit int) ([]*RespGetParam, error) {
+func (s *OrderService) OrderList(username string, page, limit int) ([]*OrderReq, error) {
 
 	if page <= 0 {
 		page = 1
@@ -92,9 +92,9 @@ func (s *OrderService) GetOrders(username string, page, limit int) ([]*RespGetPa
 		return nil, err
 	}
 
-	var list []*RespGetParam
+	var list []*OrderReq
 	for _, v := range res {
-		resp := &RespGetParam{
+		resp := &OrderReq{
 			ID:       v.ID,
 			OrderId:  v.OrderId,
 			UserName: v.UserName,
@@ -108,7 +108,7 @@ func (s *OrderService) GetOrders(username string, page, limit int) ([]*RespGetPa
 }
 
 // 更新数据
-func (s *OrderService) UpdateOne(param RespGetParam) error {
+func (s *OrderService) UpdateOrder(param OrderReq) error {
 
 	order := model.Order{
 		ID:        param.ID,

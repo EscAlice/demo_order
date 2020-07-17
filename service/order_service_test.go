@@ -21,7 +21,7 @@ func TestOrderService_AddOrder(t *testing.T) {
 
 	orderService := InitService()
 
-	req := ReqAddParam{
+	req := AddOrderReq{
 		OrderId:  "",
 		UserName: "",
 		Amount:   "",
