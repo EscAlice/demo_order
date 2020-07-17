@@ -7,6 +7,7 @@ import (
 
 // 初始化数据库连接
 func Init() (*gorm.DB, error) {
+
 	var Db *gorm.DB
 	var err error
 	Db, err = gorm.Open("mysql", "root:123456@tcp(127.0.0.1:3306)/demo_order?charset=utf8&parseTime=True&loc=Local&timeout=10ms")

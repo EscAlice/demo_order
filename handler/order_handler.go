@@ -30,6 +30,7 @@ type UpdateReq struct {
 	Status  string  `form:"status"`
 	FileUrl string  `form:"file_url"`
 }
+
 type ListReq struct {
 	UserName string `form:"user_name"`
 	Page     int    `form:"page"`
@@ -64,6 +65,7 @@ func NewOne(c *gin.Context) {
 		})
 		return
 	}
+
 	c.JSON(http.StatusOK, gin.H{
 		"code":    1,
 		"message": "添加成功",
@@ -86,7 +88,7 @@ func GetOne(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
 			"code":    -1,
-			"message": "抱歉未找到相关信息",
+			"message": "未找到相关信息",
 		})
 		return
 	}
@@ -124,6 +126,7 @@ func UpdateOne(c *gin.Context) {
 		})
 		return
 	}
+
 	c.JSON(http.StatusOK, gin.H{
 		"code":    1,
 		"message": "更新成功",
@@ -146,7 +149,7 @@ func GetList(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
 			"code":    -1,
-			"message": "抱歉未找到相关信息",
+			"message": "未找到相关信息",
 		})
 		return
 	}
@@ -220,6 +223,7 @@ func Download(c *gin.Context) {
 		})
 		return
 	}
+
 	c.JSON(http.StatusOK, gin.H{
 		"code": 1,
 		"data": fmt.Sprintf("'%s' download!", res),
@@ -238,6 +242,7 @@ func Export(c *gin.Context) {
 		})
 		return
 	}
+
 	c.JSON(http.StatusOK, gin.H{
 		"code": 1,
 		"data": "导出文件成功",
