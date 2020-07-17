@@ -21,7 +21,7 @@ func TestOrderService_AddOrder(t *testing.T) {
 
 	orderService := InitService()
 
-	req := AddOrderReq{
+	req := OrderDetailReq{
 		OrderId:  "",
 		UserName: "",
 		Amount:   "",
@@ -34,18 +34,18 @@ func TestOrderService_AddOrder(t *testing.T) {
 }
 
 // 数据
-func TestOrderService_GetOrder(t *testing.T) {
+func TestOrderService_OrderDetail(t *testing.T) {
 
 	orderService := InitService()
 
 	id := 10
-	res, err := orderService.GetOrder(int64(id))
+	res, err := orderService.OrderDetail(int64(id))
 	assert.NoError(t, err)
 	assert.Equal(t, int64(10), res.ID)
 }
 
 // 列表
-func TestOrderService_GetOrders(t *testing.T) {
+func TestOrderService_OrderList(t *testing.T) {
 
 	orderService := InitService()
 
@@ -53,18 +53,18 @@ func TestOrderService_GetOrders(t *testing.T) {
 	page := 0
 	limit := 0
 
-	list, err := orderService.GetOrders(username, page, limit)
+	list, err := orderService.OrderList(username, page, limit)
 
 	assert.NoError(t, err)
 	assert.Equal(t, "xiaoming", list[0].UserName)
 }
 
 // 更新
-func TestOrderService_UpdateOne(t *testing.T) {
+func TestOrderService_UpdateOrder(t *testing.T) {
 
 	orderService := InitService()
 
-	resp := RespGetParam{
+	req := OrderReq{
 		ID:       11,
 		OrderId:  "10",
 		UserName: "10",
@@ -73,7 +73,7 @@ func TestOrderService_UpdateOne(t *testing.T) {
 		FileUrl:  "10",
 	}
 
-	err := orderService.UpdateOne(resp)
+	err := orderService.UpdateOrder(req)
 	assert.NoError(t, err)
 
 }
