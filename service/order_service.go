@@ -158,7 +158,7 @@ func (s *OrderService) DownloadFile(id int64) (string, error) {
 	timeStamp := time.Now().Unix()
 	fileName := fmt.Sprintf("download-%d.jpg", timeStamp)
 	// 存放文件路径
-	filePath := fmt.Sprintf("download/%s", fileName)
+	filePath := fmt.Sprintf("utils/download/%s", fileName)
 	file, err := os.Create(filePath)
 	if err != nil {
 		return "", nil

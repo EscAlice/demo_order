@@ -184,7 +184,7 @@ func Upload(c *gin.Context) {
 	filePathStr := filepath.Join(fileDir, fileName)
 
 	err = c.SaveUploadedFile(file, filePathStr)
-	fileUrl := fmt.Sprintf("upload/%d/%d/%d/%s", now.Year(), now.Month(), now.Day(), fileName)
+	fileUrl := fmt.Sprintf("utils/upload/%d/%d/%d/%s", now.Year(), now.Month(), now.Day(), fileName)
 	uerr := OService.UpdateFileUrl(getReq.ID, fileUrl)
 	if uerr != nil {
 		fmt.Println(uerr)
