@@ -24,6 +24,9 @@ func main() {
 	handler.OService = service.NewOrderService(mysqlDao)
 
 	// 初始化router
-	router := router.InitRouter()
-	_ = router.Run(":8000")
+	engine := router.InitRouter()
+	err = engine.Run(":8000")
+	if err != nil {
+		println(err)
+	}
 }

@@ -13,12 +13,18 @@ func Init() (*gorm.DB, error) {
 
 	var Db *gorm.DB
 	var err error
+	var dataBaseUrl = "root:123456@tcp(127.0.0.1:3306)/" + DatabaseName + "?charset=utf8&parseTime=True&loc=Local&timeout=10ms"
 
 	// 连接数据库
-	Db, err = gorm.Open("mysql", "root:123456@tcp(127.0.0.1:3306)/"+DatabaseName+"?charset=utf8&parseTime=True&loc=Local&timeout=10ms")
+	Db, err = gorm.Open("mysql", dataBaseUrl)
 	if err != nil {
 		// 如果数据库不存在则创建数据库
 		createDatabase(DatabaseName)
+		// 连接数据库
+		Db, err = gorm.Open("mysql", dataBaseUrl)
+		if err != nil {
+			return nil, err
+		}
 	}
 	return Db, nil
 }

@@ -11,7 +11,7 @@ type OrderDao interface {
 	CreateOrder(order *model.Order) error
 
 	// 查询订单
-	QueryOrder(id int64) (*model.Order, error)
+	QueryOrder(id uint) (*model.Order, error)
 
 	// 查询订单全部列表
 	QueryAll() ([]*model.Order, error)
@@ -23,7 +23,7 @@ type OrderDao interface {
 	UpdateOrder(order *model.Order) error
 
 	// 更新文件路径
-	UpdateUrl(id int64, url string) error
+	UpdateUrl(id uint, url string) error
 }
 
 type OrderMysqlDao struct {
@@ -50,11 +50,10 @@ func (m *OrderMysqlDao) CreateOrder(order *model.Order) error {
 }
 
 // 查询数据
-func (m *OrderMysqlDao) QueryOrder(id int64) (*model.Order, error) {
+func (m *OrderMysqlDao) QueryOrder(id uint) (*model.Order, error) {
 
 	order := &model.Order{
 		ID:        0,
-		OrderId:   "",
 		UserName:  "",
 		Amount:    0,
 		Status:    "",
@@ -103,11 +102,10 @@ func (m *OrderMysqlDao) UpdateOrder(order *model.Order) error {
 }
 
 // 更新文件路径
-func (m *OrderMysqlDao) UpdateUrl(id int64, url string) error {
+func (m *OrderMysqlDao) UpdateUrl(id uint, url string) error {
 
 	order := model.Order{
 		ID:        0,
-		OrderId:   "",
 		UserName:  "",
 		Amount:    0,
 		Status:    "",

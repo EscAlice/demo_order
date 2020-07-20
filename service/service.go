@@ -12,23 +12,6 @@ import (
 	"time"
 )
 
-type OrderDetailReq struct {
-	OrderId  string `json:"order_id"`
-	UserName string `json:"user_name"`
-	Amount   string `json:"amount"`
-	Status   string `json:"status"`
-	FileUrl  string `json:"file_url"`
-}
-
-type OrderReq struct {
-	ID       int64   `json:"id"`
-	OrderId  string  `json:"order_id"`
-	UserName string  `json:"user_name"`
-	Amount   float64 `json:"amount"`
-	Status   string  `json:"status"`
-	FileUrl  string  `json:"file_url"`
-}
-
 type OrderService struct {
 	dao dao.OrderDao
 }
@@ -39,14 +22,12 @@ func NewOrderService(dao dao.OrderDao) *OrderService {
 }
 
 // 新增数据
-func (s *OrderService) AddOrder(req OrderDetailReq) error {
+func (s *OrderService) AddOrder(req model.AddOrderReq) error {
 
-	amount, _ := strconv.ParseFloat(req.Amount, 64)
 	order := &model.Order{
 		ID:        0,
-		OrderId:   req.OrderId,
 		UserName:  req.UserName,
-		Amount:    amount,
+		Amount:    req.Amount,
 		Status:    req.Status,
 		FileUrl:   req.FileUrl,
 		CreatedAt: time.Now().Unix(),
@@ -59,25 +40,17 @@ func (s *OrderService) AddOrder(req OrderDetailReq) error {
 }
 
 // 查询数据
-func (s *OrderService) OrderDetail(id int64) (*OrderReq, error) {
+func (s *OrderService) OrderDetail(id uint) (*model.Order, error) {
 
 	order, err := s.dao.QueryOrder(id)
 	if err != nil {
 		return nil, err
 	}
-	res := &OrderReq{
-		ID:       order.ID,
-		OrderId:  order.OrderId,
-		UserName: order.UserName,
-		Amount:   order.Amount,
-		Status:   order.Status,
-		FileUrl:  order.FileUrl,
-	}
-	return res, nil
+	return order, nil
 }
 
 // 查询数据列表
-func (s *OrderService) OrderList(username string, page, limit int) ([]*OrderReq, error) {
+func (s *OrderService) OrderList(username string, page, limit int) ([]*model.Order, error) {
 
 	if page <= 0 {
 		page = 1
@@ -86,39 +59,17 @@ func (s *OrderService) OrderList(username string, page, limit int) ([]*OrderReq,
 		limit = 10
 	}
 	username = "%" + username + "%"
-	res, err := s.dao.QueryOrders(username, page, limit)
+	list, err := s.dao.QueryOrders(username, page, limit)
 
 	if err != nil {
 		return nil, err
-	}
-
-	var list []*OrderReq
-	for _, v := range res {
-		resp := &OrderReq{
-			ID:       v.ID,
-			OrderId:  v.OrderId,
-			UserName: v.UserName,
-			Amount:   v.Amount,
-			Status:   v.Status,
-			FileUrl:  v.FileUrl,
-		}
-		list = append(list, resp)
 	}
 	return list, nil
 }
 
 // 更新数据
-func (s *OrderService) UpdateOrder(param OrderReq) error {
+func (s *OrderService) UpdateOrder(order model.Order) error {
 
-	order := model.Order{
-		ID:        param.ID,
-		OrderId:   param.OrderId,
-		UserName:  param.UserName,
-		Amount:    param.Amount,
-		Status:    param.Status,
-		FileUrl:   param.FileUrl,
-		CreatedAt: time.Now().Unix(),
-	}
 	err := s.dao.UpdateOrder(&order)
 	if err != nil {
 		return err
@@ -127,7 +78,7 @@ func (s *OrderService) UpdateOrder(param OrderReq) error {
 }
 
 // 更新文件路径
-func (s *OrderService) UpdateFileUrl(id int64, url string) error {
+func (s *OrderService) UpdateFileUrl(id uint, url string) error {
 
 	err := s.dao.UpdateUrl(id, url)
 	if err != nil {
@@ -137,7 +88,7 @@ func (s *OrderService) UpdateFileUrl(id int64, url string) error {
 }
 
 // 下载文件
-func (s *OrderService) DownloadFile(id int64) (string, error) {
+func (s *OrderService) DownloadFile(id uint) (string, error) {
 
 	order, err := s.dao.QueryOrder(id)
 	if err != nil {
@@ -199,8 +150,6 @@ func (s *OrderService) ExportOrder() error {
 			row = sheet.AddRow()
 			cell = row.AddCell()
 			cell.Value = strconv.Itoa(int(v.ID))
-			cell = row.AddCell()
-			cell.Value = v.OrderId
 			cell = row.AddCell()
 			cell.Value = v.UserName
 			cell = row.AddCell()

@@ -3,6 +3,7 @@ package service
 import (
 	"demo_order/dao"
 	"demo_order/db"
+	"demo_order/model"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -21,10 +22,9 @@ func TestOrderService_AddOrder(t *testing.T) {
 
 	orderService := InitService()
 
-	req := OrderDetailReq{
-		OrderId:  "",
+	req := model.AddOrderReq{
 		UserName: "",
-		Amount:   "",
+		Amount:   0,
 		Status:   "",
 		FileUrl:  "",
 	}
@@ -39,9 +39,9 @@ func TestOrderService_OrderDetail(t *testing.T) {
 	orderService := InitService()
 
 	id := 10
-	res, err := orderService.OrderDetail(int64(id))
+	res, err := orderService.OrderDetail(uint(id))
 	assert.NoError(t, err)
-	assert.Equal(t, int64(10), res.ID)
+	assert.Equal(t, uint(10), res.ID)
 }
 
 // 列表
@@ -86,7 +86,7 @@ func TestOrderService_UpdateFileUrl(t *testing.T) {
 	id := 10
 	url := "upload/2020/7/14/1594720514-用户类图.jpg"
 
-	err := orderService.UpdateFileUrl(int64(id), url)
+	err := orderService.UpdateFileUrl(uint(id), url)
 	assert.NoError(t, err)
 }
 
@@ -97,7 +97,7 @@ func TestOrderService_DownloadFile(t *testing.T) {
 
 	id := 9
 
-	_, err := orderService.DownloadFile(int64(id))
+	_, err := orderService.DownloadFile(uint(id))
 	assert.NoError(t, err)
 }
 

@@ -16,7 +16,6 @@ func TestOrderMysqlDao_CreateOrder(t *testing.T) {
 
 	err := Dao.CreateOrder(&model.Order{
 		ID:        0,
-		OrderId:   "",
 		UserName:  "",
 		Amount:    0,
 		Status:    "",
@@ -33,9 +32,9 @@ func TestOrderMysqlDao_QueryOrder(t *testing.T) {
 	Dao := &OrderMysqlDao{Db: dbLink}
 
 	id := 10
-	order, err := Dao.QueryOrder(int64(id))
+	order, err := Dao.QueryOrder(uint(id))
 	assert.NoError(t, err)
-	assert.Equal(t, int64(10), order.ID)
+	assert.Equal(t, uint(10), order.ID)
 }
 
 // 列表
@@ -81,6 +80,6 @@ func TestOrderMysqlDao_UpdateUrl(t *testing.T) {
 	id := 10
 	url := "upload/2020/7/14/1594720514-用户类图.jpg"
 
-	err := Dao.UpdateUrl(int64(id), url)
+	err := Dao.UpdateUrl(uint(id), url)
 	assert.NoError(t, err)
 }

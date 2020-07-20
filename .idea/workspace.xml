@@ -2,15 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="445664d7-a263-4764-99f7-5a1acaeee0b4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/order_dao.go" beforeDir="false" afterPath="$PROJECT_DIR$/dao/dao.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/order_dao_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/dao/dao_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/db.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handler/order_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/order_model.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/order.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/order_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/order_service_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/service_test.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -63,6 +83,17 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
+    <configuration name="TestInit in demo_order/db" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="demo_order" />
+      <working_directory value="$PROJECT_DIR$/db" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="demo_order/db" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestInit$" />
+      <method v="2" />
+    </configuration>
     <configuration name="TestOrderService_DownloadFile in demo_order/service" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="demo_order" />
       <working_directory value="$PROJECT_DIR$/service" />
@@ -96,24 +127,13 @@
       <pattern value="^TestOrderService_GetOrder$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestOrderService_GetOrders in demo_order/service (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="demo_order" />
-      <working_directory value="$PROJECT_DIR$/service" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="demo_order/service" />
-      <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestOrderService_GetOrders$" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build demo_order" />
+        <item itemvalue="Go Test.TestInit in demo_order/db" />
         <item itemvalue="Go Test.TestOrderService_ExportOrder in demo_order/service" />
         <item itemvalue="Go Test.TestOrderService_DownloadFile in demo_order/service" />
         <item itemvalue="Go Test.TestOrderService_GetOrder in demo_order/service (1)" />
-        <item itemvalue="Go Test.TestOrderService_GetOrders in demo_order/service (1)" />
       </list>
     </recent_temporary>
   </component>
