@@ -58,7 +58,6 @@ func TestOrderMysqlDao_UpdateOrder(t *testing.T) {
 
 	order := &model.Order{
 		ID:        10,
-		OrderId:   "10",
 		UserName:  "10",
 		Amount:    10,
 		Status:    "10",
