@@ -20,7 +20,7 @@ type OrderDao interface {
 	QueryOrders(username string, page, limit int) ([]*model.Order, error)
 
 	// 更新数据
-	UpdateOrder(order *model.Order) error
+	UpdateOrder(id uint, data map[string]interface{}) error
 
 	// 更新文件路径
 	UpdateUrl(id uint, url string) error
@@ -39,7 +39,7 @@ func NewOrderMysqlDao(db *gorm.DB) *OrderMysqlDao {
 func (m *OrderMysqlDao) CreateOrder(order *model.Order) error {
 
 	tx := m.Db.Begin()
-	result := tx.Create(order)
+	result := tx.Model(&model.Order{}).Create(order)
 	if result.Error != nil {
 		tx.Rollback()
 		err := result.Error
@@ -60,7 +60,7 @@ func (m *OrderMysqlDao) QueryOrder(id uint) (*model.Order, error) {
 		FileUrl:   "",
 		CreatedAt: 0,
 	}
-	query := m.Db.Where("id = ?", id)
+	query := m.Db.Model(&model.Order{}).Where("id = ?", id)
 	if err := query.First(order).Error; err != nil {
 		return nil, err
 	}
@@ -71,7 +71,7 @@ func (m *OrderMysqlDao) QueryOrder(id uint) (*model.Order, error) {
 func (m *OrderMysqlDao) QueryAll() ([]*model.Order, error) {
 
 	var orders []*model.Order
-	if err := m.Db.Find(&orders).Error; err != nil {
+	if err := m.Db.Model(&model.Order{}).Find(&orders).Error; err != nil {
 		return nil, err
 	}
 	return orders, nil
@@ -81,7 +81,7 @@ func (m *OrderMysqlDao) QueryAll() ([]*model.Order, error) {
 func (m *OrderMysqlDao) QueryOrders(username string, page, limit int) ([]*model.Order, error) {
 
 	var orders []*model.Order
-	query := m.Db.Where("user_name LIKE ?", username).Order("created_at desc, amount")
+	query := m.Db.Model(&model.Order{}).Where("user_name LIKE ?", username).Order("created_at desc, amount")
 	query = query.Offset((page - 1) * limit).Limit(limit)
 	if err := query.Find(&orders).Error; err != nil {
 		return nil, err
@@ -90,10 +90,10 @@ func (m *OrderMysqlDao) QueryOrders(username string, page, limit int) ([]*model.
 }
 
 // 更新数据
-func (m *OrderMysqlDao) UpdateOrder(order *model.Order) error {
+func (m *OrderMysqlDao) UpdateOrder(id uint, data map[string]interface{}) error {
 
 	tx := m.Db.Begin()
-	if err := tx.Save(order).Error; err != nil {
+	if err := tx.Model(&model.Order{}).Where("id = ?", id).Updates(data).Error; err != nil {
 		tx.Rollback()
 		return err
 	}

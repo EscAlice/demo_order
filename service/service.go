@@ -70,7 +70,11 @@ func (s *OrderService) OrderList(username string, page, limit int) ([]*model.Ord
 // 更新数据
 func (s *OrderService) UpdateOrder(order model.Order) error {
 
-	err := s.dao.UpdateOrder(&order)
+	err := s.dao.UpdateOrder(order.ID, map[string]interface{}{
+		"amount":   order.Amount,
+		"status":   order.Status,
+		"file_url": order.FileUrl,
+	})
 	if err != nil {
 		return err
 	}

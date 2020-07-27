@@ -64,9 +64,8 @@ func TestOrderService_UpdateOrder(t *testing.T) {
 
 	orderService := InitService()
 
-	req := OrderReq{
+	req := model.Order{
 		ID:       11,
-		OrderId:  "10",
 		UserName: "10",
 		Amount:   10,
 		Status:   "10",

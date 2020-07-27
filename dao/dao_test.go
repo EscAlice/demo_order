@@ -57,15 +57,19 @@ func TestOrderMysqlDao_UpdateOrder(t *testing.T) {
 	Dao := &OrderMysqlDao{Db: dbLink}
 
 	order := &model.Order{
-		ID:        10,
-		UserName:  "10",
-		Amount:    10,
-		Status:    "10",
-		FileUrl:   "10",
+		ID:        6,
+		UserName:  "11",
+		Amount:    11,
+		Status:    "11",
+		FileUrl:   "11",
 		CreatedAt: time.Now().Unix(),
 	}
 
-	err := Dao.UpdateOrder(order)
+	err := Dao.UpdateOrder(order.ID, map[string]interface{}{
+		//"amount":   order.Amount,
+		"status":   order.Status,
+		"file_url": order.FileUrl,
+	})
 	assert.NoError(t, err)
 
 }
